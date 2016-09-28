@@ -57,6 +57,8 @@ $(document).ready(function () {
         var URL = '/Emp/GetEmpInfo';
         $.getJSON(URL, { empNo: empNo }, function (data) {
             var values = data.split('sss');
+
+
             document.getElementById("EName").value = values[0];
             document.getElementById("EDesignation").value = values[1];
             document.getElementById("ESection").value = values[2];

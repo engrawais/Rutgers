@@ -889,6 +889,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Reports\RDLC\CustomKPI.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\DRAbsent.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\DRAttendance.rdlc" />
     <EmbeddedResource Include="Reports\RDLC\DRDetailed.rdlc" />

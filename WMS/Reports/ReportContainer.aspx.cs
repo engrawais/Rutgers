@@ -286,18 +286,29 @@ namespace WMS.Reports
                         //LoadReport(PathString, CalculateEmpSummary(ReportsFilterImplementation(fm, _TempViewList8, _ViewList8), _dateFrom, _dateTo), _dateFrom + " TO " + _dateTo);
                         LoadReport(PathString, CalculateEmpSummary(ReportsFilterImplementation(fm, _TempViewList, _ViewList), Convert.ToDateTime(_dateFrom), Convert.ToDateTime(_dateTo)), Convert.ToDateTime(_dateFrom), Convert.ToDateTime(_dateTo));
                         break;
+                  
+                    case "CustomKPI": dt = qb.GetValuesfromDB("select * from EmpView " + query);
+                        _ViewList = dt.ToList<EmpView>();
+                        _TempViewList = new List<EmpView>();
+                        //Change the Paths
+                        if (GlobalVariables.DeploymentType == false)
+                            PathString = "/Reports/RDLC/CustomKPI.rdlc";
+                        else
+                            PathString = "/WMS/Reports/RDLC/CustomKPI.rdlc";
+                        //LoadReport(PathString, CalculateEmpSummary(ReportsFilterImplementation(fm, _TempViewList8, _ViewList8), _dateFrom, _dateTo), _dateFrom + " TO " + _dateTo);
+                        LoadReport(PathString, CalculateEmpSummary(ReportsFilterImplementation(fm, _TempViewList, _ViewList), Convert.ToDateTime(_dateFrom), Convert.ToDateTime(_dateTo)), Convert.ToDateTime(_dateFrom), Convert.ToDateTime(_dateTo));
+                        break;
 
                 }
-
-
-
-
-
-
-
-
             }
         }
+        #region
+        private void LoadReport(string PathString, List<EmpView> list, DateTime dateTime1, DateTime dateTime2)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+       
 
         
 
@@ -350,10 +361,10 @@ namespace WMS.Reports
             ReportViewer1.LocalReport.EnableExternalImages = true;
             ReportViewer1.LocalReport.DataSources.Add(datasource1);
             ReportViewer1.LocalReport.DataSources.Add(datasource2);
-            ReportParameter rp = new ReportParameter("Header", _Header, false);
-            ReportParameter rp1 = new ReportParameter("Date", Date, false);
-            ReportParameter rp2 = new ReportParameter("WorkDays", "Working Days: "+WorkDays, false);
-            this.ReportViewer1.LocalReport.SetParameters(new ReportParameter[] { rp, rp1,rp2 });
+            //ReportParameter rp = new ReportParameter("Header", _Header, false);
+            //ReportParameter rp1 = new ReportParameter("Date", Date, false);
+            //ReportParameter rp2 = new ReportParameter("WorkDays", "Working Days: "+WorkDays, false);
+            //this.ReportViewer1.LocalReport.SetParameters(new ReportParameter[] { rp, rp1,rp2 });
             ReportViewer1.LocalReport.Refresh();
         }
 
